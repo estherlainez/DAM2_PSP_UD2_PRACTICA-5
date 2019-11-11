@@ -1,4 +1,4 @@
-package botellas;
+package botellas_Ejercicio2;
 
 public class Botella {
 	public static int nBotellas=0;

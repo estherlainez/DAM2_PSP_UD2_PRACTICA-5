@@ -1,8 +1,11 @@
-package botellas;
+package botellas_Ejercicio1;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Caja {
-	public static int nBotellas=0;
+	public static AtomicInteger nBotellas= new AtomicInteger(0);
+	public static AtomicBoolean embotellando= new AtomicBoolean(false);
 	public static String Embotellador;
 	public static String Empaquetador;
 	public Caja() {

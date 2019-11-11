@@ -1,4 +1,4 @@
-package botellas;
+package botellas_Ejercicio2;
 
 import java.util.concurrent.Semaphore;
 
@@ -6,7 +6,7 @@ import canarios.Columpio;
 import canarios.Comedero;
 
 public class Embotellador extends Thread{
-	private static String nombre;
+	private String nombre;
 	private Semaphore seEmbotellador;
 	private Semaphore seEmpaquetador;
 	
@@ -21,24 +21,30 @@ public class Embotellador extends Thread{
 		super.run();
 		for(;;) {
 			try {	
-				seEmpaquetador.acquire();
-				while(Caja.nBotellas<10) {
+				seEmbotellador.acquire();
+				
+				if(Caja.nBotellas.get()<10) {
 					Botella.llenarBotella(this);
 					sleep(1000);
 					Botella.colocarBotellaEnCaja(this.nombre);
 					sleep(1000);
-					Caja.nBotellas ++;
+					Caja.nBotellas.getAndIncrement();
 					System.out.println("numero botellas="+Caja.nBotellas);
 				}
-				seEmpaquetador.release();
-				if(Caja.nBotellas==10) {
-					seEmbotellador.acquire();
+				
+				if(Caja.nBotellas.get()==10) {
+					
 					Botella.enviarSeñal(this);
 					System.out.println("Empieza nueva caja");
-					Caja.nBotellas=0;
-					seEmbotellador.release();
+					Caja.nBotellas.set(0);
+					System.out.println("numero botellas="+Caja.nBotellas);
+					sleep(2000);
+					Caja.embotellando.set(false);
+					
 				}
+				seEmbotellador.release();
 				
+				sleep(2000);
 				
 			} catch (InterruptedException e) {
 				e.printStackTrace();

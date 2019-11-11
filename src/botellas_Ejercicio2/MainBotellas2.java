@@ -1,4 +1,4 @@
-package botellas;
+package botellas_Ejercicio2;
 
 import java.util.concurrent.Semaphore;
 
@@ -8,7 +8,8 @@ public class MainBotellas2 {
 		Embotellador embotelladores[]=new Embotellador[3];
 		Semaphore seEmpaquetador=new Semaphore(1);
 		Semaphore seEmbotellador=new Semaphore(embotelladores.length);
-		Empaquetador ep1=new Empaquetador("Empaquetador",seEmpaquetador);
+		Empaquetador ep1=new Empaquetador("Empaquetador",seEmpaquetador, seEmbotellador);
+		
 		for(int i=0;i<embotelladores.length;i++) {
 			embotelladores[i]=new Embotellador("Embotellador___"+i,seEmbotellador,seEmpaquetador);
 			embotelladores[i].start();
