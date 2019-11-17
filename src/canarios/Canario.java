@@ -3,6 +3,7 @@ package canarios;
 import java.util.concurrent.Semaphore;
 public class Canario extends Thread{
 	private Semaphore sem;
+	private Semaphore sem1;
 	private String nombre;
 	
 	public Canario (String nombre, Semaphore sem) {
@@ -20,9 +21,11 @@ public class Canario extends Thread{
 				Comedero.AcabarComer(this.nombre);
 				Thread.sleep(1000);
 				sem.release();
+				//sem1.acquire();
 				Columpio.columpiar(this.nombre);
 				Thread.sleep(1000);
 				Columpio.finColumpiar(this.nombre);
+				//sem1.release();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
