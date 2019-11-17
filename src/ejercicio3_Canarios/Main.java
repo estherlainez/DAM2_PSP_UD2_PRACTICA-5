@@ -1,4 +1,4 @@
-package ejercicio3;
+package ejercicio3_Canarios;
 
 import java.util.concurrent.Semaphore;
 

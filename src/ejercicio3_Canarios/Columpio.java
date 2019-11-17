@@ -1,4 +1,4 @@
-package ejercicio1;
+package ejercicio3_Canarios;
 
 public class Columpio {
 	

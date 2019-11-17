@@ -1,8 +1,9 @@
-package ejercicio3;
+package ejercicio3_Canarios;
 
 import java.util.concurrent.Semaphore;
 
-public class Canaria extends Thread{
+public class Canario extends Thread{
+
 	private String nombre;
 	Semaphore com;
 	Semaphore col;
@@ -10,7 +11,7 @@ public class Canaria extends Thread{
 	
 	
 	
-	public Canaria(String nombre, Semaphore com, Semaphore col, Semaphore colH) {
+	public Canario(String nombre, Semaphore com, Semaphore col, Semaphore colH) {
 		super();
 		this.nombre = nombre;
 		this.com = com;
@@ -33,11 +34,11 @@ public class Canaria extends Thread{
 				Comedero.noComer(this.nombre);
 				com.release();
 				
-				colH.acquire();
+				col.acquire();
 				Columpio.columpiar(this.nombre);
 				Thread.sleep(2000);
 				Columpio.noColumpiar(this.nombre);
-				colH.release();
+				col.release();
 			} catch (InterruptedException e) {
 				
 				e.printStackTrace();
